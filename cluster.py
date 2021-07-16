@@ -9,6 +9,7 @@ from datetime import datetime
 import numpy as np
 from sklearn import preprocessing
 import argparse
+import datetime as dt
 
 import STBOF
 import STBDBCAN
@@ -30,7 +31,8 @@ def cluster():
                         required=True)
     parser.add_argument('-minPts_cluster', type=int, help='Minimum cluster cardinality', required=True)
 
-    parser.add_argument('-bw', '--bweights', nargs='+', type=float, help='Behavioral attributes Weights', required=False)
+    parser.add_argument('-bw', '--bweights', nargs='+', type=float, help='Behavioral attributes Weights',
+                        required=False)
     parser.add_argument('-sw', '--sweights', type=float, help='Spatial attributes Weights', default=1, required=False)
     parser.add_argument('-tw', '--tweights', type=float, help='Temporal attribute Weights', default=1, required=False)
     parser.add_argument('-t', '--temporal', type=str, help="Name of sensor for temporal mode", required=False)
@@ -72,9 +74,9 @@ def cluster():
 
     # ------------ Load and preprocess the Dataset ------------
 
-    # Dataset tuples structure: [id, timestamp, behavioral_attribute1, behavioral_attribute2 ...]
+    # Dataset tuples structure: [id, datetime, behavioral_attribute1, behavioral_attribute2 ...]
     # Loading and preparing the observations
-    data = pd.read_csv(data_file).iloc[:400, :]
+    data = pd.read_csv(data_file)
 
     # If temporal mode is selected select the specified sensor
     if id_temporal is not None:
@@ -86,6 +88,9 @@ def cluster():
     min_max_scaler = preprocessing.MinMaxScaler()
     data[behavioral_attributes] = min_max_scaler.fit_transform(data[behavioral_attributes])
 
+    # Converting the time column from datetime to epoch
+    data['time'] = (pd.to_datetime(data['time']) - dt.datetime(1970, 1, 1)).dt.total_seconds()
+
     # ------------ ST-BOF ------------
 
     stbof = STBOF.STBOF(data=data, min_pts=minPts, k=k, spatial_distances=spatial_distances_np,
@@ -93,8 +98,9 @@ def cluster():
 
     # String containing a duplicate of the screen output to be saved in a txt file
     r = ''
-    msg = "Using {} points\nComputing ST-Behavioral Outlier Factor...\n" \
-          "Parameters: minPts={}, k={}".format(len(data), minPts, k)
+    msg = "Using " + str(len(data)) + " points\nDistance functions features weights: Spatial: " + str(beta_s) + \
+          ", Temporal: " + str(gamma_t) + ", Behavioral: " + str(alpha_b) + "\nComputing ST-Behavioral Outlier Factor\n"
+    msg += "Parameters: minPts={}, k={}".format(minPts, k)
     print(msg)
     r += msg + "\n"
 
@@ -134,9 +140,10 @@ def cluster():
     print(msg)
     r += msg + "\n"
 
-    # ------------ Saving results ------------
+    # ------------ Reverting back the preprocessing and saving results ------------
     data['id'] = le.inverse_transform(data['id'])
     data[behavioral_attributes] = min_max_scaler.inverse_transform(data[behavioral_attributes])
+    data["time"] = pd.to_datetime(data["time"], unit='s')
     data["clusterID"] = stbdbcan.labels_
     to_save_fileName = data_file[:-4] + "_results"
     data.to_csv(to_save_fileName + ".csv", index=False)
