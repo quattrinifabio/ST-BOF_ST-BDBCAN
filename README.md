@@ -48,10 +48,10 @@ Parameters:
   -stbdbcan_minPts             	Number of neighboring points considered for ST-BDBCAN.
   -minPts_cluster               Minimum cluster cardinality.
 
-  -bw --bweights              	Behavioral attributes Weights.
-  -sw --sweights             	Spatial attributes Weights.
-  -tw --tweights  				Temporal attribute Weights.
-  -t --temporal                 Name of sensor for temporal run mode.
+  -bw --bweights              	Behavioral attributes Weights [optional, default 1].
+  -sw --sweights             	Spatial attributes Weights [optional, default 1].
+  -tw --tweights  				Temporal attribute Weights [optional, default 1].
+  -t --temporal                 Name of sensor for temporal run mode [optional].
 
 ```
 
