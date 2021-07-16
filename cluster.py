@@ -14,9 +14,6 @@ import STBOF
 import STBDBCAN
 
 
-# TODO alg parameters
-
-
 def cluster():
     # ------------ Retrieving Parameters ------------
 
