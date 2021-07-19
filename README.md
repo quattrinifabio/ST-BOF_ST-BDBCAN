@@ -34,7 +34,7 @@ The program generates two output files:
 To start the program run cluster.py
 
 ```
-Usage: cluster.py [PARAMETERS]
+Usage: python cluster.py [PARAMETERS]
 
   Clusterize Spatio-Temporal data using ST-BOF and ST-BDBCAN. 
 
