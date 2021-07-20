@@ -27,10 +27,10 @@ def behavioral_distance(alpha_b, p, o):
 
 def st_distance(p, o, pairwise_sd, beta_s, gamma_t):
     """
-    Spatio-Temporal distance of a sensor p with respect to a sensor o
+    Spatio-Temporal distance of an entity p with respect to an entity o
     :param p: datapoint p, [id, timestamp, behavioral_attribute1, behavioral_attribute2 ...]
     :param o: datapoint o, [id, timestamp, behavioral_attribute1, behavioral_attribute2 ...]
-    :param pairwise_sd: precomputed spatial distances of the sensors
+    :param pairwise_sd: precomputed spatial distances of the entities
     :param beta_s: weights for the spatial attributes
     :param gamma_t: weights for the temporal attributes
     :return: float, distance
@@ -65,7 +65,7 @@ def temporal_distance(p, o):
 
 def spatial_distance(p, o, pairwise_sd):
     """
-    Retrieves the spatial distance in meters between two sensors
+    Retrieves the spatial distance in meters between two entities
     :param p: first datapoint [id, timestamp, behavioral_attribute1, behavioral_attribute2 ...]
     :param o: second datapoint [id, timestamp, behavioral_attribute1, behavioral_attribute2 ...]
     :param pairwise_sd: symmetric matrix encoding the distances

@@ -18,7 +18,9 @@ import STBDBCAN
 def cluster():
     # ------------ Retrieving Parameters ------------
 
-    parser = argparse.ArgumentParser(description='Process parameters')
+    parser = argparse.ArgumentParser(description='Spatio-Temporal Behavioral Density-based Clustering of Applications '
+                                                 'with Noise (ST-BDBCAN) using Spatio-Temporal Behavioral Outlier '
+                                                 'Factor (ST-BOF)')
     parser.add_argument('-d', '--distances', type=str, help="File with pairwise distances (.csv).", required=True)
     parser.add_argument('-f', '--file', type=str, help="Dataset (.csv).", required=True)
     parser.add_argument('-b', '--behavioral', type=str, nargs='+', help='Names of Behavioral attributes', required=True)
@@ -33,6 +35,8 @@ def cluster():
 
     parser.add_argument('-bw', '--bweights', nargs='+', type=float, help='Behavioral attributes Weights',
                         required=False)
+    parser.add_argument('-mnp', '--minNoisePercentage', type=float, help='Minimum % of noise points expected',
+                        default=1, required=False)
     parser.add_argument('-sw', '--sweights', type=float, help='Spatial attributes Weights', default=1, required=False)
     parser.add_argument('-tw', '--tweights', type=float, help='Temporal attribute Weights', default=1, required=False)
     parser.add_argument('-t', '--temporal', type=str, help="Name of sensor for temporal mode", required=False)
@@ -42,6 +46,7 @@ def cluster():
     data_file = args.file
     behavioral_attributes = args.behavioral
     id_temporal = args.temporal
+    min_noise_percentage = args.minNoisePercentage
     beta_s = args.sweights
     gamma_t = args.tweights
 
@@ -61,14 +66,14 @@ def cluster():
     # ------------ Load and preprocess Pairwise Distances ------------
 
     # Distances file format: id1, id2, dist
-    # Loading and preparing the sensors data
+    # Loading and preparing the data
     spatial_distances = pd.read_csv(distances_file)
     # Substitution of the labels with numerical IDs
     le = preprocessing.LabelEncoder()
     le.fit(spatial_distances['id1'])
     spatial_distances['id1'] = le.transform(spatial_distances['id1'])
     spatial_distances['id2'] = le.transform(spatial_distances['id2'])
-    # ST-BOF uses a numpy array that contains in position [id1, id2] the distance of sensor id1 and id2
+    # ST-BOF uses a numpy array that contains in position [id1, id2] the distance of entity id1 and id2
     spatial_distances_np = spatial_distances.pivot(index='id1', columns='id2', values='dist').fillna(0).to_numpy()
     spatial_distances_np += spatial_distances_np.transpose()
 
@@ -77,8 +82,9 @@ def cluster():
     # Dataset tuples structure: [id, datetime, behavioral_attribute1, behavioral_attribute2 ...]
     # Loading and preparing the observations
     data = pd.read_csv(data_file)
+    # data = data[:400]
 
-    # If temporal mode is selected select the specified sensor
+    # If temporal mode is selected select the specified entity
     if id_temporal is not None:
         data = data[data['id'] == id_temporal]
 
@@ -113,13 +119,13 @@ def cluster():
     # ------------ ST-BDBCAN ------------
 
     # Computing the ST-BOF Upper Bound, over which a point is termed as a spatio-temporal outlier
-    # The upper bound is set as the ST-BOF of the 1-percentile point
-    st_bofub_index = round(len(data) * 0.01)
+    # The upper bound is set as the ST-BOF of the specified percentile (1-percentile point by default)
+    st_bofub_index = round(len(data) * min_noise_percentage / 100)
     st_bofub = np.sort(stbof.outlier_factor_)[-st_bofub_index]
 
     msg = "Setting the ST-BOFUB as the ST-BOF of point {}\nCurrent ST-BOFUB = {}\nComputing ST-BDBCAN...\n" \
           "Parameters: ST-BOFUB={}, pct={}, BDBCAN_minPts={}, minPts_cluster={}".format(
-            st_bofub_index, st_bofub, st_bofub, pct, stbdbcan_minPts, minPts_cluster)
+        st_bofub_index, st_bofub, st_bofub, pct, stbdbcan_minPts, minPts_cluster)
     print(msg)
     r += msg + "\n"
 
@@ -134,8 +140,8 @@ def cluster():
     noise_pts_number = len(stbdbcan.labels_[stbdbcan.labels_ == -1])
     msg = "Done. Elapsed time: {}\n------------------------------------------------\nNumber of clusters = {}\n" \
           "Unclassified: {}\nNoise:{}\n------------\nPercentage of noise points = {}".format(
-            datetime.now() - start, np.max(stbdbcan.labels_), len(stbdbcan.labels_[stbdbcan.labels_ == -2]),
-            noise_pts_number, noise_pts_number * 100 / len(data))
+        datetime.now() - start, np.max(stbdbcan.labels_), len(stbdbcan.labels_[stbdbcan.labels_ == -2]),
+        noise_pts_number, noise_pts_number * 100 / len(data))
 
     print(msg)
     r += msg + "\n"

@@ -1,5 +1,5 @@
 """
-Spatio-Temporal Behavioral Outlier Factor (ST-BOF) implementation for traffic sensors
+Spatio-Temporal Behavioral Outlier Factor (ST-BOF) implementation
 
 @author Fabio Quattrini
 """
