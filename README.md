@@ -84,13 +84,15 @@ python cluster.py -d demos/demo_spatial_distances.csv -f demos/sensor_traffic_ob
 
 The run (which takes some minutes) produces the two output files *sensor_traffic_observations_results.csv* and *sensor_traffic_observations_results.txt*. The datapoints are divided in 32 clusters, with a 2% percentage of anomalies and a ST-BOFUB = 2.05. The following image contains a visualization of the datapoints colored by their assigned cluster id:
 
+```
+![alt text](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_clusters.png)
+```
 
-
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/master/images/spatio_temporal_clusters.png" style="zoom: 67%;" />
+<img src="(https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_clusters.png?raw=true" style="zoom: 67%;" />
 
 This figure shows the same datapoints, colored with yellow if they are classified as anomalies and by violet otherwise:
 
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/master/images/spatio_temporal_anomalies.png" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_anomalies.png?raw=true" style="zoom: 67%;" />
 
 ## Temporal Clustering
 
@@ -112,9 +114,9 @@ The running produces the two output files *sensor_traffic_observations_results_R
 
 The image contains a graphic visualization of the results, with the points colored by their cluster id and the anomalies in orange:
 
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/master/images/temporal_result_flow.png" style="zoom: 80%;" />
+<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/temporal_result_flow.png?raw=true" style="zoom: 80%;" />
 
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/master/images/temporal_result_speed.png" style="zoom: 80%;" />
+<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/temporal_result_speed.png?raw=true" style="zoom: 80%;" />
 
 # References
 
