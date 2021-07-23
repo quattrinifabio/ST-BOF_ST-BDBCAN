@@ -125,7 +125,7 @@ def cluster():
 
     msg = "Setting the ST-BOFUB as the ST-BOF of point {}, Minimum Noise Percentage = {}%\nCurrent ST-BOFUB = {}" \
           "\nComputing ST-BDBCAN...\nParameters: ST-BOFUB={}, pct={}, BDBCAN_minPts={}, minPts_cluster={}".format(
-           min_noise_percentage, st_bofub_index, st_bofub, st_bofub, pct, stbdbcan_minPts, minPts_cluster)
+           st_bofub_index, min_noise_percentage, st_bofub, st_bofub, pct, stbdbcan_minPts, minPts_cluster)
     print(msg)
     r += msg + "\n"
 
