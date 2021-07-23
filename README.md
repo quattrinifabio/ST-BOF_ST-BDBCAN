@@ -86,11 +86,9 @@ The run (which takes some minutes) produces the two output files *sensor_traffic
 
 ![Spatio-Temporal Clusters](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_clusters.png?raw=true)
 
-[Spatio-Temporal Clusters](<images/spatio_temporal_clusters.png>)
-
 This figure shows the same datapoints, colored with yellow if they are classified as anomalies and by violet otherwise:
 
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_anomalies.png?raw=true" style="zoom: 67%;" />
+![Spatio-Temporal Anomalies](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_anomalies.png?raw=true)
 
 ## Temporal Clustering
 
@@ -112,9 +110,9 @@ The running produces the two output files *sensor_traffic_observations_results_R
 
 The image contains a graphic visualization of the results, with the points colored by their cluster id and the anomalies in orange:
 
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/temporal_result_flow.png?raw=true" style="zoom: 80%;" />
+![Temporal Result - Flow](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/temporal_result_flow.png?raw=true)
 
-<img src="https://raw.githubusercontent.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/temporal_result_speed.png?raw=true" style="zoom: 80%;" />
+![Temporal Result - Speed](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/temporal_result_speed.png?raw=true)
 
 # References
 
