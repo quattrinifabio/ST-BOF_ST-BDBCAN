@@ -97,13 +97,13 @@ The same code with the addition of -t [sensor_id] tells the program to ignore al
 Tu run the demo:
 
 ```
-python cluster.py -d demos/demo_spatial_distances.csv -f demos/sensor_traffic_observations.csv -b sum_flow avg_speed -minPts 20 -k 4 -pct 0.2 -stbdbcan_minPts 20 -minPts_cluster 5 -t R002_S2
+python cluster.py -d demos/demo_spatial_distances.csv -f demos/sensor_traffic_observations.csv -b sum_flow avg_speed -minPts 35 -k 6 -pct 0.2 -stbdbcan_minPts 20 -minPts_cluster 5 -t R002_S2
 ```
 
 To specify the optional parameters:
 
 ```
-python cluster.py -d demos/demo_spatial_distances.csv -f demos/sensor_traffic_observations.csv -b sum_flow avg_speed -minPts 20 -k 4 -pct 0.2 -stbdbcan_minPts 20 -minPts_cluster 5 -t R002_S2 -mnp 1 -bw 1 1 -sw 1 -tw 1
+python cluster.py -d demos/demo_spatial_distances.csv -f demos/sensor_traffic_observations.csv -b sum_flow avg_speed -minPts 35 -k 6 -pct 0.2 -stbdbcan_minPts 20 -minPts_cluster 5 -t R002_S2 -mnp 1 -bw 1 1 -sw 1 -tw 1
 ```
 
 The running produces the two output files *sensor_traffic_observations_results_R002_S2.csv* and *sensor_traffic_observations_results_R002_S2.txt*. The datapoints are divided in 3 clusters, with a 9.4% percentage of anomalies and a ST-BOFUB = 3.4. 
