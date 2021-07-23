@@ -27,7 +27,7 @@ With the optional parameter -t [entity_id] it is possible to run the computation
 The program requires two files as input, both in csv format:
 
 - <u>Distances</u>: file containing the distances between the locations, with structure *[id1, id2, dist]*, with id1 < id2.
-- <u>Dataset</u>: file containing the data to be clustered, with structure *[id, timestamp, behavioral_feature1, behavioral_feature2]*.
+- <u>Dataset</u>: file containing the data to be clustered, with structure *[id, timestamp, behavioral_feature1, behavioral_feature2, …, behavioral_feature_n]*.
 
 # Output
 
