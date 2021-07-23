@@ -84,11 +84,9 @@ python cluster.py -d demos/demo_spatial_distances.csv -f demos/sensor_traffic_ob
 
 The run (which takes some minutes) produces the two output files *sensor_traffic_observations_results.csv* and *sensor_traffic_observations_results.txt*. The datapoints are divided in 32 clusters, with a 2% percentage of anomalies and a ST-BOFUB = 2.05. The following image contains a visualization of the datapoints colored by their assigned cluster id:
 
-```
-![alt text](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_clusters.png)
-```
+![Spatio-Temporal Clusters](https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_clusters.png?raw=true)
 
-<img src="(https://github.com/quattrinifabio/ST-BOF_ST-BDBCAN/blob/master/images/spatio_temporal_clusters.png?raw=true" style="zoom: 67%;" />
+[Spatio-Temporal Clusters](<images/spatio_temporal_clusters.png>)
 
 This figure shows the same datapoints, colored with yellow if they are classified as anomalies and by violet otherwise:
 
