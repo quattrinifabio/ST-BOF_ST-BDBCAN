@@ -104,7 +104,10 @@ def cluster():
 
     # String containing a duplicate of the screen output to be saved in a txt file
     r = ''
-    msg = "Using " + str(len(data)) + " points\nDistance functions features weights: Spatial: " + str(beta_s) + \
+    msg = ""
+    if id_temporal is not None:
+        msg = "Temporal mode selected, analyzing entity {}\n".format(id_temporal)
+    msg += "Using " + str(len(data)) + " points\nDistance functions features weights: Spatial: " + str(beta_s) + \
           ", Temporal: " + str(gamma_t) + ", Behavioral: " + str(alpha_b) + "\nComputing ST-Behavioral Outlier Factor\n"
     msg += "Parameters: minPts={}, k={}".format(minPts, k)
     print(msg)
@@ -152,6 +155,8 @@ def cluster():
     data["time"] = pd.to_datetime(data["time"], unit='s')
     data["clusterID"] = stbdbcan.labels_
     to_save_fileName = data_file[:-4] + "_results"
+    if id_temporal is not None:
+        to_save_fileName += "_{}".format(id_temporal)
     data.to_csv(to_save_fileName + ".csv", index=False)
 
     text_file = open(to_save_fileName + ".txt", "w")
