@@ -1,0 +1,17 @@
+Using 13349 points
+Distance functions features weights: Spatial: 1, Temporal: 1, Behavioral: [1. 1.]
+Computing ST-Behavioral Outlier Factor
+Parameters: minPts=20, k=4
+Done. Elapsed time: 0:04:22.631879 
+------------------------------------------------
+Setting the ST-BOFUB as the ST-BOF of point 133, Minimum Noise Percentage = 1%
+Current ST-BOFUB = 2.0496166593210665
+Computing ST-BDBCAN...
+Parameters: ST-BOFUB=2.0496166593210665, pct=0.2, BDBCAN_minPts=20, minPts_cluster=5
+Done. Elapsed time: 0:02:53.009065
+------------------------------------------------
+Number of clusters = 32
+Unclassified: 0
+Noise:268
+------------
+Percentage of noise points = 2.007641021799386
