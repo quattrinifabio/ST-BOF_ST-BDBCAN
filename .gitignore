@@ -1,9 +1,2 @@
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/inspectionProfiles/Project_Default.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/ST-BOF_ST-BDBCAN.iml
-.idea/vcs.xml
-__pycache__/distances.cpython-38.pyc
-__pycache__/STBDBCAN.cpython-38.pyc
-__pycache__/STBOF.cpython-38.pyc
+.idea/
+__pycache__/
